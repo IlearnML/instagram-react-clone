@@ -44,10 +44,19 @@
   - onAuthStateChanged : 현재 로그인된 사용자를 불러오는 메서드
   - signInWithEmailAndPassword : email 과 password를 활용해 비동기식으로 로그인 하는 메서드
   - addDoc : 문서 작성 시 setDoc을 활용할 경우 문서의 ID를 지정해야 작성이 가능하나 addDoc을 활용시 자동으로 ID를 생성할 수 있어 이미지 업로드 및 댓글 달기에 사용
+  - 호스팅시 npx-create-react-app/ npm start/ ctrl C / firebase login/ firebase logout/ firebase init, build/ npm run build/ firebase deploy or firebase deploy --only hosting 등을 사용
 
 ## Error revising
 - Firebase Database 사용시 Realtime Database가 아닌 Firestore Database를 활용하여 instagram의 sign in, sign up, post등을 구현하고자 하였으나 오류가 발생, 해당 오류가 버전차이임을 확인하고 수정 후 오류 해결
 - instagramEmbed 에서 발생한 코드 오류
+- Firebase storage Rules에서 allow read, write: if false; 로 기본 설정이 데이터를 못 받아오고 못 쓰게 되어있어  allow read, write: if request.auth != null;로 수정해야 데이터베이스 활용이 가능하다는 것을 파악 후 실행
+- Hosting 과정에서 firebase에서 자체적으로 destination 파일을 index.html로 설정, 호스팅할 경우 내가 만든 앱 화면을 출력하지 않고 
+
+![image](https://user-images.githubusercontent.com/88093016/158419867-1349d9a8-9c5e-4860-93ac-eebfd4b262bd.png)
+
+해당 화면을 출력해 firebase init - npm run build - firebase deploy 실행 후 한번 더 npm run build를 진행 후 강력 새로고침을 하니 앱 화면이 출력되었다.
+(사실 해당 방법을 여러번 반복하였으나 에러가 계속 발생, 새로 npx create-react-app을 실행하여 진행하여 수정하였다)
+
 ## 앞으로의 개선할 사항
   1. 현재 App.js 파일에 많은 부분이 들어가 있음, 파일로 나눠서 작성
   2. material-ui를 활용하여 만들었던 컴포넌트들을 직접 코딩하여 구현하기
